@@ -1,0 +1,13 @@
+#!/bin/bash
+
+FILEIN="EndevIPs"
+FILEOUT="customhoststest"
+LINES=$(cat $FILEIN)
+STARTNUM=50
+DATE=$(date +%Y-%m-%d)
+
+for LINE in $LINES
+do
+   echo $STARTNUM,Endev $LINE,ip,$LINE/255.255.255.255,$DATE | cat >> $FILEOUT
+   ((STARTNUM++))
+done
