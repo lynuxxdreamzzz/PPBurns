@@ -1,0 +1,12 @@
+#trims leading whitespace, interprets backslash, and skips last line if missing terminating linefeed
+
+while read l; do
+	echo "$l"
+done </path/to/file
+
+#this doesn't do what the other comment did
+
+while IFS="" read -r p || [ -n "$p" ]
+do
+	printf '%s\n' "$p"
+done < /path/to/file

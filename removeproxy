@@ -1,0 +1,18 @@
+path_to_file="/etc/bash.bashrc"
+gout="proxy"
+
+sudo mv $path_to_file "$path_to_file.old"
+#change IFS to not remove leading whitespace
+OIFS=$IFS
+IFS=
+while read l; do
+	if [[ $l == *$gout* ]]; then
+		echo $l
+	else
+		echo $l | sudo tee -a $path_to_file
+	fi
+done < "$path_to_file.old"
+#change IFS back
+IFS=$OIFS
+
+sudo rm /etc/apt/apt.conf.d/proxyconf
