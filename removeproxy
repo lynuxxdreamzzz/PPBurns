@@ -1,7 +1,9 @@
+#!/bin/bash
+
 path_to_file="/etc/bash.bashrc"
 gout="proxy"
-
-sudo mv $path_to_file "$path_to_file.old"
+echo "heerrrre"
+sudo mv $path_to_file '$path_to_file.old'
 #change IFS to not remove leading whitespace
 OIFS=$IFS
 IFS=

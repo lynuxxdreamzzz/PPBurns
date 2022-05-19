@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vlan=69
+sudo ip link delete eth0.$vlan

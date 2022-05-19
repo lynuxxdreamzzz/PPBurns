@@ -1,0 +1,5 @@
+#!/bin/bash
+vlan=69
+
+sudo ip link add link eth0 name eth0.$vlan type vlan id $vlan
+ip -d link show eth0.$vlan

@@ -1,8 +1,8 @@
 prox="10.117.42.69:6969"
 
 echo "export http_proxy=http://$prox/" | sudo tee -a /etc/bash.bashrc
-echo "export ftp_proxy=http://$prox/" | sudo tee -a /etc/bash.bashrc  
-echo "https_proxy=http://$prox/" | sudo tee -a /etc/bash.bashrc
+#echo "export ftp_proxy=http://$prox/" | sudo tee -a /etc/bash.bashrc  
+echo "export https_proxy=http://$prox/" | sudo tee -a /etc/bash.bashrc
 
 echo "Acquire::http::Proxy \"http://$prox/\";" | sudo tee -a /etc/apt/apt.conf.d/proxyconf
 echo "Acquire::https::Proxy \"http://$prox/\";" | sudo tee -a /etc/apt/apt.conf.d/proxyconf
