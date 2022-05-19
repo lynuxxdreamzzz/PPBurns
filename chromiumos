@@ -1,0 +1,37 @@
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+export PATH=/path/to/depot_tools:$PATH
+cd /tmp
+cat > ./sudo_editor <<EOF
+#!/bin/sh
+echo Defaults \!tty_tickets > \$1          # Entering your password in one shell affects all shells 
+echo Defaults timestamp_timeout=180 >> \$1 # Time between re-requesting your password, in minutes
+EOF
+chmod +x ./sudo_editor 
+sudo EDITOR=./sudo_editor visudo -f /etc/sudoers.d/relax_requirements
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+sudo apt-get install git gitk git-gui curl xz-utils \
+     python3-pkg-resources python3-virtualenv python3-oauth2client
+
+eval 'set +o history' 2>/dev/null || setopt HIST_IGNORE_SPACE 2>/dev/null
+ touch ~/.gitcookies
+ chmod 0600 ~/.gitcookies
+
+ git config --global http.cookiefile ~/.gitcookies
+
+ tr , \\t <<\__END__ >>~/.gitcookies
+chromium.googlesource.com,FALSE,/,TRUE,2147483647,o,git-elevated9zzz.gmail.com=1//0fMkEyjfw-_bICgYIARAAGA8SNwF-L9IrZ96x-RLYVykJ9DE6Mq4m64CGGlrtyIEMs2SFvU2nEMSo3hX1DhldY3ooTH1RxxduCSM
+chromium-review.googlesource.com,FALSE,/,TRUE,2147483647,o,git-elevated9zzz.gmail.com=1//0fMkEyjfw-_bICgYIARAAGA8SNwF-L9IrZ96x-RLYVykJ9DE6Mq4m64CGGlrtyIEMs2SFvU2nEMSo3hX1DhldY3ooTH1RxxduCSM
+__END__
+eval 'set -o history' 2>/dev/null || unsetopt HIST_IGNORE_SPACE 2>/dev/null
+
+git ls-remote https://chromium.googlesource.com/chromiumos/manifest.git
+cd src && git config --local gerrit.host true`
+umask 022
+mkdir chromiumos
+cd chromiumos
+repo init -u https://chromium.googlesource.com/chromiumos/manifest -b main
+repo sync -j4
+gn args out/your_out_dir_here)
+
