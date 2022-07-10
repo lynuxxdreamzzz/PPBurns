@@ -1,0 +1,4 @@
+for d in */ ; do
+echo "$d"
+ls "$d"/* -r | grep ".vmk0"
+done
